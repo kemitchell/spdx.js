@@ -47,7 +47,6 @@ spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 #### Order of Precedence and Parentheses
 
 ```js
-
 spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
