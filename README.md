@@ -65,11 +65,17 @@ spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 ```javascript
 Array.isArray(spdx.licenses); // => true
 
+spdx.licenses.indexOf('ISC') > -1; // => true
+
+spdx.licenses.indexOf('Apache-1.7') > -1; // => false
+
 spdx.licenses.every(function(element) {
   return typeof element === 'string';
 }); // => true
 
 Array.isArray(spdx.exceptions); // => true
+
+spdx.exceptions.indexOf('GCC-exception-3.1') > -1; // => true
 
 spdx.exceptions.every(function(element) {
   return typeof element === 'string';
