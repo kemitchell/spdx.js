@@ -1,0 +1,14 @@
+{
+  "name": "spdx",
+  "description": "SPDX License Expression Syntax parser",
+  "version": "0.0.0-prerelease",
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "jsmd": "^0.3.0"
+  },
+  "main": "spdx",
+  "scripts": {
+    "lint": "jshint source",
+    "test": "jsmd README.md"
+  }
+}
