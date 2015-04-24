@@ -6,14 +6,12 @@ spdx.js
 
 SPDX License Expression Syntax parser
 
-Usage
------
-
 <!--js
 var spdx = require('./');
 -->
 
-### Simple License Expressions
+Simple License Expressions
+--------------------------
 
 ```js
 spdx.valid('GPL-2.0'); // => true
@@ -22,29 +20,30 @@ spdx.valid('LicenseRef-23'); // => true
 spdx.valid('LicenseRef-MIT-Style-1'); // => true
 ```
 
-### Composite License Expressions
+Composite License Expressions
+-----------------------------
 
-#### Disjunctive `OR` Operator
+### Disjunctive `OR` Operator
 
 ```js
 spdx.valid('(LGPL-2.1 OR MIT)'); // => true
 spdx.valid('(LGPL-2.1 OR MIT OR BSD-3-Clause)'); // => true
 ```
 
-#### Conjunctive `AND` Operator
+### Conjunctive `AND` Operator
 
 ```js
 spdx.valid('(LGPL-2.1 AND MIT)'); // => true
 spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 ```
 
-#### Exception `WITH` Clause
+### Exception `WITH` Clause
 
 ```js
 spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 ```
 
-#### Order of Precedence and Parentheses
+### Order of Precedence and Parentheses
 
 ```js
 spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
@@ -52,7 +51,8 @@ spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 ```
 
-### Identifier Lists
+Identifier Lists
+----------------
 
 ```js
 Array.isArray(spdx.licenses); // => true
@@ -69,7 +69,8 @@ spdx.exceptions.every(function(element) {
 }); // => true
 ```
 
-### Version Metadata
+Version Metadata
+----------------
 
 ```js
 typeof spdx.licenseListVersion === 'string'; // => true
