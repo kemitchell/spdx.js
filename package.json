@@ -2,13 +2,31 @@
   "name": "spdx",
   "description": "SPDX License Expression Syntax parser",
   "version": "0.0.0-prerelease",
+  "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
+  "bugs": "https://github.com/kemitchell/spdx.js/issues",
   "devDependencies": {
+    "check-versions": "^1.0.0",
+    "docco": "^0.7.0",
     "jshint": "^2.7.0",
     "jsmd": "^0.3.0"
   },
-  "main": "spdx",
+  "homepage": "https://github.com/kemitchell/spdx.js",
+  "keywords": [
+    "SPDX",
+    "law",
+    "license",
+    "license expression",
+    "metadata",
+    "standards"
+  ],
+  "license": "Apache-2.0",
+  "main": "spdx.js",
+  "repository": "kemitchell/spdx.js",
   "scripts": {
+    "check": "check-versions --check-module",
+    "doc": "docco --output documentation spdx.js",
     "lint": "jshint source",
+    "precommit": "npm run check && npm run lint && npm run test",
     "test": "jsmd README.md"
   }
 }
