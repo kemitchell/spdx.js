@@ -16,8 +16,6 @@ var spdx = require('./');
 ### Simple License Expressions
 
 ```javascript
-typeof spdx.valid === 'function'; // => true
-
 spdx.valid('GPL-2.0'); // => true
 
 spdx.valid('GPL-2.0+'); // => true
