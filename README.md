@@ -51,8 +51,6 @@ spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 ```
 
-// Order of precedence +, WITH, AND, OR
-
 #### Order of Precedence and Parentheses
 
 ```javascript
