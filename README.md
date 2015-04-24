@@ -1,6 +1,9 @@
 spdx.js
 =======
 
+[![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
+[![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
+
 SPDX License Expression Syntax parser
 
 Usage
