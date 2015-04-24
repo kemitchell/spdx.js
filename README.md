@@ -9,9 +9,9 @@ SPDX License Expression Syntax parser
 Usage
 -----
 
-```javascript
+<!--js
 var spdx = require('./');
-```
+-->
 
 ### Simple License Expressions
 
