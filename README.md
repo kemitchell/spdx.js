@@ -53,7 +53,36 @@ spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 #### Order of Precedence and Parentheses
 
 ```javascript
-spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT'); // => true
+
+spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
 
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
+
+spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
+```
+
+### Identifier Lists
+
+```javascript
+Array.isArray(spdx.licenses); // => true
+
+spdx.licenses.every(function(element) {
+  return typeof element === 'string';
+}); // => true
+
+Array.isArray(spdx.exceptions); // => true
+
+spdx.exceptions.every(function(element) {
+  return typeof element === 'string';
+}); // => true
+```
+
+### Version Metadata
+
+```javascript
+typeof spdx.licenseListVersion === 'string'; // => true
+
+typeof spdx.specificationVersion === 'string'; // => true
+
+typeof spdx.version === 'string'; // => true
 ```
