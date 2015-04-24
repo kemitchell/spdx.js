@@ -223,7 +223,7 @@
 
   spdx.licenseListVersion = '2.0rc-3';
 
-  spdx.version = '0.0.0-prerelease';
+  spdx.version = '0.1.0';
 
   return spdx;
 });
