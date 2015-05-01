@@ -21,6 +21,7 @@ spdx.valid('GPL-2.0'); // => true
 spdx.valid('GPL-2.0+'); // => true
 spdx.valid('LicenseRef-23'); // => true
 spdx.valid('LicenseRef-MIT-Style-1'); // => true
+spdx.valid('Made-Up'); // => null
 ```
 
 Composite License Expressions

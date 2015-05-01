@@ -4,7 +4,14 @@
 
 // ### Validation Functions
 var parser = require('./parser.generated.js').parser;
-exports.valid = parser.parse.bind(parser);
+exports.valid = function(argument) {
+  try {
+    parser.parse(argument);
+    return true;
+  } catch (e) {
+    return null;
+  }
+};
 
 // ### Reference Data
 exports.licenses = require('./licenses.json');
