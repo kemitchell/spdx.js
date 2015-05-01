@@ -60,20 +60,41 @@ var grammar = {
   start: 'start',
   bnf: {
     'start': [
-      'expression EOS'
+      ['expression EOS', 'return $$ = $1;']
     ],
     // The ABNF grammar on page 84 of the 2.0rc3 draft appears to have
     // some problems, and doesn't validate some of the examples that
     // follow on subsequent pages. This gramar allows arbitrary nesting
     // and grouping, akin to a classic Bison calculator example.
     'expression': [
-      'expression OR expression',
-      'expression AND expression',
-      'OPEN expression CLOSE',
-      'expression WITH EXCEPTION',
-      'LICENSE',
-      'LICENSE PLUS',
-      'LICENSEREF'
+      [
+        'expression OR expression',
+        '$$ = { conjunction: \'or\', left: $1, right: $3 };'
+      ],
+      [
+        'expression AND expression',
+        '$$ = { conjunction: \'and\', left: $1, right: $3 };'
+      ],
+      [
+        'OPEN expression CLOSE',
+        '$$ = $2'
+      ],
+      [
+        'expression WITH EXCEPTION',
+        '$$ = { expression: $1, exception: $3 };'
+      ],
+      [
+        'LICENSE',
+        '$$ = { license: yytext };'
+      ],
+      [
+        'LICENSE PLUS',
+        '$$ = { license: $1, plus: true };'
+      ],
+      [
+        'LICENSEREF',
+        '$$ = { license: yytext };'
+      ]
     ]
   }
 };

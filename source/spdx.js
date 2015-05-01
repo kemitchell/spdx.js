@@ -6,6 +6,11 @@
 
 // Require the generated parser.
 var parser = require('./parser.generated.js').parser;
+
+exports.parse = function(argument) {
+  return parser.parse(argument);
+};
+
 exports.valid = function(argument) {
   try {
     parser.parse(argument);

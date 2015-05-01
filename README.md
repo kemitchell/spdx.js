@@ -18,6 +18,7 @@ SPDX License Expression Syntax parser
 Simple License Expressions
 --------------------------
 ```js
+spdx.valid('Invalid-Identifier'); // => null
 spdx.valid('GPL-2.0'); // => true
 spdx.valid('GPL-2.0+'); // => true
 spdx.valid('LicenseRef-23'); // => true
@@ -76,16 +77,40 @@ typeof spdx.specificationVersion === 'string'; // => true
 typeof spdx.version === 'string'; // => true
 ```
 
-Original Examples Not Found in the Specification
-------------------------------------------------
+Abstract Syntax Tree
+--------------------
 ```js
-spdx.valid('Made-Up'); // => null
-spdx.valid(
+var exampleAST = {
+  left: {
+    left: {
+      expression: {
+        license: 'MIT'
+      },
+      exception: 'Autoconf-exception-2.0'
+    },
+    conjunction: 'and',
+    right: {
+      license: 'Apache-2.0'
+    }
+  },
+  conjunction: 'or',
+  right: {
+    left: {
+      license: 'LGPL-2.1'
+    },
+    conjunction: 'or',
+    right: {
+      license: 'GPL-3.0',
+      plus: true
+    }
+  }
+};
+
+spdx.parse(
   '(' +
     '(MIT WITH Autoconf-exception-2.0 AND Apache-2.0)' +
     ' OR '+
     '(LGPL-2.1 OR GPL-3.0+)'+
   ')'
-); // => true
-spdx.valid('LicenseRef-BSD-3-Clause-with-patent-grant'); // => true
+); // => exampleAST
 ```
