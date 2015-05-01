@@ -5,16 +5,17 @@ spdx.js
 [![license](https://img.shields.io/badge/license-Apache--2.0-303284.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
 
-
 SPDX License Expression Syntax parser
 
 <!--js
-var spdx = require('./');
+  // The fenced code blocks below are run as tests with `jsmd`.
+  // The following `require` call brings the module.
+  // Use `require ('spdx')` in your own code.
+  var spdx = require('./');
 -->
 
 Simple License Expressions
 --------------------------
-
 ```js
 spdx.valid('GPL-2.0'); // => true
 spdx.valid('GPL-2.0+'); // => true
@@ -26,36 +27,30 @@ Composite License Expressions
 -----------------------------
 
 ### Disjunctive `OR` Operator
-
 ```js
 spdx.valid('(LGPL-2.1 OR MIT)'); // => true
 spdx.valid('(LGPL-2.1 OR MIT OR BSD-3-Clause)'); // => true
 ```
 
 ### Conjunctive `AND` Operator
-
 ```js
 spdx.valid('(LGPL-2.1 AND MIT)'); // => true
 spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 ```
 
 ### Exception `WITH` Clause
-
 ```js
-spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
+spdx.valid('GPL-2.0+ WITH Bison-exception-2.2'); // => true
 ```
 
 ### Order of Precedence and Parentheses
-
 ```js
 spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
-spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 ```
 
 Identifier Lists
 ----------------
-
 ```js
 Array.isArray(spdx.licenses); // => true
 spdx.licenses.indexOf('ISC') > -1; // => true
@@ -73,7 +68,6 @@ spdx.exceptions.every(function(element) {
 
 Version Metadata
 ----------------
-
 ```js
 typeof spdx.licenseListVersion === 'string'; // => true
 typeof spdx.specificationVersion === 'string'; // => true
