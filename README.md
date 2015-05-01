@@ -21,7 +21,6 @@ spdx.valid('GPL-2.0'); // => true
 spdx.valid('GPL-2.0+'); // => true
 spdx.valid('LicenseRef-23'); // => true
 spdx.valid('LicenseRef-MIT-Style-1'); // => true
-spdx.valid('Made-Up'); // => null
 ```
 
 Composite License Expressions
@@ -42,6 +41,7 @@ spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 ### Exception `WITH` Clause
 ```js
 spdx.valid('GPL-2.0+ WITH Bison-exception-2.2'); // => true
+spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 ```
 
 ### Order of Precedence and Parentheses
@@ -73,4 +73,18 @@ Version Metadata
 typeof spdx.licenseListVersion === 'string'; // => true
 typeof spdx.specificationVersion === 'string'; // => true
 typeof spdx.version === 'string'; // => true
+```
+
+Original Examples Not Found in the Specification
+------------------------------------------------
+```js
+spdx.valid('Made-Up'); // => null
+spdx.valid(
+  '(' +
+    '(MIT WITH Autoconf-exception-2.0 AND Apache-2.0)' +
+    ' OR '+
+    '(LGPL-2.1 OR GPL-3.0+)'+
+  ')'
+); // => true
+spdx.valid('LicenseRef-BSD-3-Clause-with-patent-grant'); // => true
 ```

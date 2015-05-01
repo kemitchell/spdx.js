@@ -1,3 +1,8 @@
+// Parser Generator
+// ================
+// Use jison to generate an SPDX Expression parser based on a
+// Bison-style BNF grammar.
+
 var Generator = require('jison').Generator;
 var options = {
   type: 'slr',
@@ -18,11 +23,12 @@ var ret = function(token) {
 };
 
 var grammar = {
-  comment: 'SPDX Expression Syntax',
-  author: 'K.E. Mitchell',
+  comment: 'SPDX Expression Syntax 2.0rc3',
+  author: 'Kyle E. Mitchell',
   lex: {
     macros: {},
     rules: [
+      ['$', 'return ' + quote('EOS') + ';'],
       ['\\s+', '/* skip whitespace */'],
       ['\\+', 'return ' + quote('PLUS') + ';'],
       ['\\(', 'return ' + quote('OPEN') + ';'],
@@ -51,22 +57,20 @@ var grammar = {
   ]
     .concat(words)
     .join(' '),
-  start: 'license-expression',
+  start: 'start',
   bnf: {
-    'and-or': [
-      'AND',
-      'OR'
+    'start': [
+      'expression EOS'
     ],
-    'and-ors': [
-      'and-or simple-license-identifier',
-      'and-ors and-or simple-license-identifier'
-    ],
-    'license-expression': [
-      'simple-license-identifier',
-      'simple-license-identifier WITH EXCEPTION',
-      'OPEN license-expression and-ors CLOSE'
-    ],
-    'simple-license-identifier': [
+    // The ABNF grammar on page 84 of the 2.0rc3 draft appears to have
+    // some problems, and doesn't validate some of the examples that
+    // follow on subsequent pages. This gramar allows arbitrary nesting
+    // and grouping, akin to a classic Bison calculator example.
+    'expression': [
+      'expression OR expression',
+      'expression AND expression',
+      'OPEN expression CLOSE',
+      'expression WITH EXCEPTION',
       'LICENSE',
       'LICENSE PLUS',
       'LICENSEREF'
