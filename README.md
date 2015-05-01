@@ -2,6 +2,7 @@ spdx.js
 =======
 
 [![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
+[![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX--LES-beta%20draft%200.98-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
 [![license](https://img.shields.io/badge/license-Apache--2.0-303284.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
 
