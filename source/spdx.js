@@ -39,7 +39,7 @@ exports.exceptions = require('./exceptions.json');
 // ### Version Metadata
 
 // This module's semantic version
-exports.version = '0.2.0';
+exports.version = '0.2.1';
 
 // The SPDX Package Data Exchange Specification version
 exports.licenseListVersion = '2.0rc3-20150303';
