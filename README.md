@@ -52,6 +52,14 @@ spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
 spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
 ```
 
+Strict Whitespace Rules
+-----------------------
+```js
+spdx.valid('MIT '); // => false
+spdx.valid(' MIT'); // => false
+spdx.valid('MIT  AND  BSD-3-Clause'); // => false
+```
+
 Identifier Lists
 ----------------
 ```js

@@ -11,7 +11,15 @@ exports.parse = function(argument) {
   return parser.parse(argument);
 };
 
+var containsRepeatedSpace = /\s{2,}/;
+
 exports.valid = function(argument) {
+  if (
+    argument.trim() !== argument ||
+    containsRepeatedSpace.test(argument)
+  ) {
+    return false;
+  }
   try {
     parser.parse(argument);
     return true;
