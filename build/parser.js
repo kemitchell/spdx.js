@@ -41,7 +41,7 @@ var grammar = {
       .concat(words.map(function(word) {
         return [word, 'return ' + quote(word) + ';'];
       }))
-      .concat(require('../source/licenses').map(ret('LICENSE')))
+      .concat(require('spdx-license-ids').map(ret('LICENSE')))
       .concat(require('../source/exceptions').map(ret('EXCEPTION')))
   },
   operators: [

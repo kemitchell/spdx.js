@@ -4,6 +4,9 @@
   "version": "0.2.1",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
   "bugs": "https://github.com/kemitchell/spdx.js/issues",
+  "dependencies": {
+    "spdx-license-ids": "^1.0.0"
+  },
   "devDependencies": {
     "check-versions": "^1.0.0",
     "docco": "^0.7.0",

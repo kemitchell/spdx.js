@@ -74,7 +74,7 @@ exports.lt = rangeComparison(function(first, second) {
 // --------------
 
 // Require the same license and exception data used by the parser.
-exports.licenses = require('./licenses.json');
+exports.licenses = require('spdx-license-ids');
 exports.exceptions = require('./exceptions.json');
 
 // Version Metadata
