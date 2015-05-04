@@ -122,3 +122,19 @@ spdx.parse(
   ')'
 ); // => exampleAST
 ```
+
+Comparison
+----------
+
+```js
+spdx.gt('GPL-3.0', 'GPL-2.0'); // => true
+spdx.lt('MPL-1.0', 'MPL-2.0'); // => true
+spdx.gt('LPPL-1.3a', 'LPPL-1.0'); // => true
+spdx.gt('LPPL-1.3a', 'LPPL-1.3a'); // => false
+spdx.gt('MIT', 'ISC'); // => false
+try {
+  spdx.gt('(MIT OR ISC)', 'GPL-3.0');
+} catch (error) {
+  error.message; // => '"(MIT OR ISC)" is not a simple license identifier'
+}
+```
