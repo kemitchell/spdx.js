@@ -77,14 +77,6 @@ spdx.exceptions.every(function(element) {
 }); // => true
 ```
 
-Version Metadata
-----------------
-```js
-typeof spdx.licenseListVersion === 'string'; // => true
-typeof spdx.specificationVersion === 'string'; // => true
-typeof spdx.version === 'string'; // => true
-```
-
 Abstract Syntax Tree
 --------------------
 ```js
@@ -125,7 +117,6 @@ spdx.parse(
 
 Comparison
 ----------
-
 ```js
 spdx.gt('GPL-3.0', 'GPL-2.0'); // => true
 spdx.lt('MPL-1.0', 'MPL-2.0'); // => true
@@ -137,4 +128,12 @@ try {
 } catch (error) {
   error.message; // => '"(MIT OR ISC)" is not a simple license identifier'
 }
+```
+
+Version Metadata
+----------------
+```js
+typeof spdx.licenseListVersion === 'string'; // => true
+typeof spdx.specificationVersion === 'string'; // => true
+typeof spdx.version === 'string'; // => true
 ```
