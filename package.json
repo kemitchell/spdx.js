@@ -19,9 +19,11 @@
   "keywords": [
     "SPDX",
     "law",
+    "legal",
     "license",
-    "license expression",
     "metadata",
+    "package",
+    "package.json",
     "standards"
   ],
   "license": "Apache-2.0",
