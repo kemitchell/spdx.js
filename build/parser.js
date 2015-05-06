@@ -23,8 +23,6 @@ var ret = function(token) {
 };
 
 var grammar = {
-  comment: 'SPDX Expression Syntax 2.0rc3',
-  author: 'Kyle E. Mitchell',
   lex: {
     macros: {},
     rules: [
@@ -33,6 +31,11 @@ var grammar = {
       ['\\+', 'return ' + quote('PLUS') + ';'],
       ['\\(', 'return ' + quote('OPEN') + ';'],
       ['\\)', 'return ' + quote('CLOSE') + ';'],
+      [':', 'return ' + quote('COLON') + ';'],
+      [
+        'DocumentRef-([0-9A-Za-z-+.]+)',
+        'return ' + quote('DOCUMENTREF') + ';'
+      ],
       [
         'LicenseRef-([0-9A-Za-z-+.]+)',
         'return ' + quote('LICENSEREF') + ';'
@@ -45,10 +48,13 @@ var grammar = {
       .concat(require('../source/exceptions').map(ret('EXCEPTION')))
   },
   operators: [
-    ['left', 'OR', 'AND', 'WITH', 'PLUS']
+    ['left', 'OR'],
+    ['left', 'AND'],
+    ['right', 'PLUS', 'WITH']
   ],
   tokens: [
     'CLOSE',
+    'COLON',
     'EXCEPTION',
     'LICENSE',
     'LICENSEREF',
@@ -62,27 +68,7 @@ var grammar = {
     'start': [
       ['expression EOS', 'return $$ = $1;']
     ],
-    // The ABNF grammar on page 84 of the 2.0rc3 draft appears to have
-    // some problems, and doesn't validate some of the examples that
-    // follow on subsequent pages. This gramar allows arbitrary nesting
-    // and grouping, akin to a classic Bison calculator example.
     'expression': [
-      [
-        'expression OR expression',
-        '$$ = { conjunction: \'or\', left: $1, right: $3 };'
-      ],
-      [
-        'expression AND expression',
-        '$$ = { conjunction: \'and\', left: $1, right: $3 };'
-      ],
-      [
-        'OPEN expression CLOSE',
-        '$$ = $2'
-      ],
-      [
-        'expression WITH EXCEPTION',
-        '$$ = { expression: $1, exception: $3 };'
-      ],
       [
         'LICENSE',
         '$$ = { license: yytext };'
@@ -94,6 +80,26 @@ var grammar = {
       [
         'LICENSEREF',
         '$$ = { license: yytext };'
+      ],
+      [
+        'DOCUMENTREF COLON LICENSEREF',
+        '$$ = { license: yytext };'
+      ],
+      [
+        'expression WITH EXCEPTION',
+        '$$ = { expression: $1, exception: $3 };'
+      ],
+      [
+        'expression AND expression',
+        '$$ = { conjunction: \'and\', left: $1, right: $3 };'
+      ],
+      [
+        'expression OR expression',
+        '$$ = { conjunction: \'or\', left: $1, right: $3 };'
+      ],
+      [
+        'OPEN expression CLOSE',
+        '$$ = $2'
       ]
     ]
   }

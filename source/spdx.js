@@ -84,7 +84,7 @@ exports.exceptions = require('./exceptions.json');
 exports.version = '0.2.1';
 
 // The SPDX Package Data Exchange Specification version
-exports.licenseListVersion = '2.0rc3-20150303';
+exports.licenseListVersion = '2.0';
 
 // The License Expression Syntax version
-exports.specificationVersion = 'beta draft 0.98';
+exports.specificationVersion = '2.0';

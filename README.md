@@ -2,7 +2,7 @@ spdx.js
 =======
 
 [![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
-[![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX--LES-beta%20draft%200.98-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
+[![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX--LES-2.0-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
 [![license](https://img.shields.io/badge/license-Apache--2.0-303284.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
 
@@ -23,6 +23,7 @@ spdx.valid('GPL-2.0'); // => true
 spdx.valid('GPL-2.0+'); // => true
 spdx.valid('LicenseRef-23'); // => true
 spdx.valid('LicenseRef-MIT-Style-1'); // => true
+spdx.valid('DocumentRef-spdx-tool-1.2:LicenseRef-MIT-Style-2'); // => true
 ```
 
 Composite License Expressions
@@ -40,16 +41,47 @@ spdx.valid('(LGPL-2.1 AND MIT)'); // => true
 spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 ```
 
-### Exception `WITH` Clause
+### Exception `WITH` Operator
 ```js
-spdx.valid('GPL-2.0+ WITH Bison-exception-2.2'); // => true
 spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 ```
 
 ### Order of Precedence and Parentheses
 ```js
-spdx.valid('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => true
-spdx.valid('((LGPL-2.1+ OR BSD-3-Clause) AND MIT)'); // => true
+var firstAST = {
+  left: {
+    license: 'LGPL-2.1'
+  },
+  conjunction: 'or',
+  right: {
+    left: {
+      license: 'BSD-3-Clause'
+    },
+    conjunction: 'and',
+    right: {
+      license: 'MIT'
+    }
+  }
+};
+spdx.parse('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => firstAST
+
+var secondAST = {
+  left: {
+    license: 'MIT'
+  },
+  conjunction: 'and',
+  right: {
+    left: {
+      license: 'LGPL-2.1',
+      plus: true
+    },
+    conjunction: 'and',
+    right: {
+      license: 'BSD-3-Clause'
+    }
+  }
+};
+spdx.parse('(MIT AND (LGPL-2.1+ AND BSD-3-Clause))'); // => secondAST
 ```
 
 Strict Whitespace Rules
@@ -75,44 +107,6 @@ spdx.exceptions.indexOf('GCC-exception-3.1') > -1; // => true
 spdx.exceptions.every(function(element) {
   return typeof element === 'string';
 }); // => true
-```
-
-Abstract Syntax Tree
---------------------
-```js
-var exampleAST = {
-  left: {
-    left: {
-      expression: {
-        license: 'MIT'
-      },
-      exception: 'Autoconf-exception-2.0'
-    },
-    conjunction: 'and',
-    right: {
-      license: 'Apache-2.0'
-    }
-  },
-  conjunction: 'or',
-  right: {
-    left: {
-      license: 'LGPL-2.1'
-    },
-    conjunction: 'or',
-    right: {
-      license: 'GPL-3.0',
-      plus: true
-    }
-  }
-};
-
-spdx.parse(
-  '(' +
-    '(MIT WITH Autoconf-exception-2.0 AND Apache-2.0)' +
-    ' OR '+
-    '(LGPL-2.1 OR GPL-3.0+)'+
-  ')'
-); // => exampleAST
 ```
 
 Comparison
