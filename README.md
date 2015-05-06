@@ -115,9 +115,8 @@ try {
 Version Metadata
 ----------------
 ```js
-typeof spdx.licenseListVersion === 'string'; // => true
-typeof spdx.specificationVersion === 'string'; // => true
-spdx.version; // => package.version
+spdx.specificationVersion; // => '2.0'
+spdx.implementationVersion; // => package.version
 ```
 
 The Specification
