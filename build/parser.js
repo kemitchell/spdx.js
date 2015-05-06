@@ -65,10 +65,10 @@ var grammar = {
     .join(' '),
   start: 'start',
   bnf: {
-    'start': [
+    start: [
       ['expression EOS', 'return $$ = $1;']
     ],
-    'expression': [
+    simpleExpression: [
       [
         'LICENSE',
         '$$ = { license: yytext };'
@@ -84,10 +84,22 @@ var grammar = {
       [
         'DOCUMENTREF COLON LICENSEREF',
         '$$ = { license: yytext };'
+      ]
+    ],
+    expression: [
+      [
+        'simpleExpression',
+        '$$ = $1;'
       ],
       [
-        'expression WITH EXCEPTION',
-        '$$ = { expression: $1, exception: $3 };'
+        'simpleExpression WITH EXCEPTION',
+        [
+          '$$ = { exception: $3 };',
+          '$$.license = $1.license;',
+          'if ($1.hasOwnProperty(\'plus\')) {',
+          '  $$.plus = $1.plus;',
+          '}'
+        ].join('\n')
       ],
       [
         'expression AND expression',
