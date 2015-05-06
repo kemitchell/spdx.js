@@ -13,6 +13,7 @@ SPDX License Expression Syntax parser
   // The following `require` call brings the module.
   // Use `require ('spdx')` in your own code.
   var spdx = require('./');
+  var package = require('./package.json');
 -->
 
 Simple License Expressions
@@ -116,7 +117,7 @@ Version Metadata
 ```js
 typeof spdx.licenseListVersion === 'string'; // => true
 typeof spdx.specificationVersion === 'string'; // => true
-typeof spdx.version === 'string'; // => true
+spdx.version; // => package.version
 ```
 
 The Specification
