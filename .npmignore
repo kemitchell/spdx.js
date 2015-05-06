@@ -1,2 +1,8 @@
+.editorconfig
+.gitattributes
+.jscsrc
+.jshintrc
+.npmignore
+.travis.yml
 build
 documentation
