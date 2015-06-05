@@ -124,7 +124,9 @@ spdx.satisfies('GPL-3.0', 'GPL-2.0+'); // => true
 spdx.satisfies('GPL-1.0', 'GPL-2.0+'); // => false
 
 spdx.satisfies('GPL-2.0', 'GPL-2.0+ WITH Bison-exception-2.2'); // => false
-spdx.satisfies('GPL-3.0 WITH Bison-exception-2.2', 'GPL-2.0+ WITH Bison-exception-2.2'); // => true
+spdx.satisfies(
+  'GPL-3.0 WITH Bison-exception-2.2', 'GPL-2.0+ WITH Bison-exception-2.2'
+); // => true
 
 spdx.satisfies('(MIT OR GPL-2.0)', '(ISC OR MIT)'); // => true
 spdx.satisfies('(MIT AND GPL-2.0)', '(MIT OR GPL-2.0)'); // => true
