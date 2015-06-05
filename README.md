@@ -104,8 +104,10 @@ spdx.gt('GPL-3.0', 'GPL-2.0'); // => true
 spdx.lt('MPL-1.0', 'MPL-2.0'); // => true
 
 spdx.gt('LPPL-1.3a', 'LPPL-1.0'); // => true
-spdx.gt('LPPL-1.3a', 'LPPL-1.3a'); // => false
+spdx.gt('LPPL-1.3c', 'LPPL-1.3a'); // => true
 spdx.gt('MIT', 'ISC'); // => false
+spdx.gt('OSL-1.0', 'OPL-1.0'); // => false
+spdx.gt('AGPL-3.0', 'AGPL-1.0'); // => true
 
 try {
   spdx.gt('(MIT OR ISC)', 'GPL-3.0');
