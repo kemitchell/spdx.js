@@ -1,6 +1,6 @@
 {
   "name": "spdx",
-  "description": "SPDX License Expression Syntax parser",
+  "description": "parse SPDX license expressions",
   "version": "0.4.1",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
   "bugs": "https://github.com/kemitchell/spdx.js/issues",

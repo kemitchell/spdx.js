@@ -6,7 +6,7 @@ spdx.js
 [![license](https://img.shields.io/badge/license-Apache--2.0-303284.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
 
-SPDX License Expression Syntax parser
+Parse SPDX license expressions
 
 <!--js
   // The fenced code blocks below are run as tests with `jsmd`.
