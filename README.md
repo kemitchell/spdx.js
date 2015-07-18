@@ -97,42 +97,6 @@ spdx.exceptions.every(function(element) {
 }); // => true
 ```
 
-Comparison
-----------
-```js
-spdx.gt('GPL-3.0', 'GPL-2.0'); // => true
-spdx.lt('MPL-1.0', 'MPL-2.0'); // => true
-
-spdx.gt('LPPL-1.3a', 'LPPL-1.0'); // => true
-spdx.gt('LPPL-1.3c', 'LPPL-1.3a'); // => true
-spdx.gt('MIT', 'ISC'); // => false
-spdx.gt('OSL-1.0', 'OPL-1.0'); // => false
-spdx.gt('AGPL-3.0', 'AGPL-1.0'); // => true
-
-try {
-  spdx.gt('(MIT OR ISC)', 'GPL-3.0');
-} catch (error) {
-  error.message; // => '"(MIT OR ISC)" is not a simple license identifier'
-}
-
-spdx.satisfies('MIT', 'MIT'); // => true
-spdx.satisfies('MIT', '(ISC OR MIT)'); // => true
-spdx.satisfies('Zlib', '(ISC OR (MIT OR Zlib))'); // => true
-spdx.satisfies('GPL-3.0', '(ISC OR MIT)'); // => false
-spdx.satisfies('GPL-2.0', 'GPL-2.0+'); // => true
-spdx.satisfies('GPL-3.0', 'GPL-2.0+'); // => true
-spdx.satisfies('GPL-1.0', 'GPL-2.0+'); // => false
-
-spdx.satisfies('GPL-2.0', 'GPL-2.0+ WITH Bison-exception-2.2'); // => false
-spdx.satisfies(
-  'GPL-3.0 WITH Bison-exception-2.2', 'GPL-2.0+ WITH Bison-exception-2.2'
-); // => true
-
-spdx.satisfies('(MIT OR GPL-2.0)', '(ISC OR MIT)'); // => true
-spdx.satisfies('(MIT AND GPL-2.0)', '(MIT OR GPL-2.0)'); // => true
-spdx.satisfies('(MIT AND GPL-2.0)', '(ISC OR GPL-2.0)'); // => false
-```
-
 Version Metadata
 ----------------
 ```js
