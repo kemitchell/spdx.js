@@ -1,8 +1,3 @@
-// spdx.js
-// =======
-// SPDX License Expression Syntax parser
-
-// Require the generated parser.
 var parser = require('./parser.generated.js').parser;
 
 exports.parse = function(argument) {
