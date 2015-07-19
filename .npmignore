@@ -1,5 +1,3 @@
-.editorconfig
-.gitattributes
 .npmignore
 .travis.yml
 build
