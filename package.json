@@ -27,7 +27,6 @@
     "standards"
   ],
   "license": "Apache-2.0",
-  "main": "source/spdx.js",
   "repository": "kemitchell/spdx.js",
   "scripts": {
     "build": "node build/parser.js > source/parser.generated.js",
