@@ -6,5 +6,4 @@ node_js:
   - "0.12"
   - "node"
   - "iojs"
-script: "npm run precommit"
 sudo: false
