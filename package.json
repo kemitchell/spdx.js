@@ -25,9 +25,9 @@
   "license": "Apache-2.0",
   "repository": "kemitchell/spdx.js",
   "scripts": {
-    "build": "node build/parser.js > parser.generated.js",
-    "prepublish": "npm run build",
-    "pretest": "npm run build",
+    "generate": "node generate-parser.js > parser.generated.js",
+    "prepublish": "npm run generate",
+    "pretest": "npm run generate",
     "test": "jsmd README.md"
   }
 }
