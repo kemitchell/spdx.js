@@ -1,4 +1,4 @@
 .npmignore
 .travis.yml
-build
+generate-parser.js
 reference
