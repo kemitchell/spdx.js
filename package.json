@@ -8,7 +8,6 @@
     "spdx-license-ids": "^1.0.0"
   },
   "devDependencies": {
-    "fixpack": "^2.2.0",
     "jison": "^0.4.15",
     "jsmd": "^0.3.0"
   },
