@@ -1,4 +1,4 @@
-var parser = require('./source/parser.generated.js').parser;
+var parser = require('./parser.generated.js').parser;
 
 exports.parse = function(argument) {
   return parser.parse(argument);
@@ -25,7 +25,7 @@ exports.valid = function(argument) {
 
 // Require the same license and exception data used by the parser.
 exports.licenses = require('spdx-license-ids');
-exports.exceptions = require('./source/exceptions.json');
+exports.exceptions = require('./exceptions.json');
 
 // The License Expression Syntax version
 exports.specificationVersion = '2.0';
