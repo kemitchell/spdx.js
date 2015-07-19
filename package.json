@@ -23,7 +23,7 @@
     "package.json",
     "standards"
   ],
-  "license": "Apache-2.0",
+  "license": "MIT",
   "repository": "kemitchell/spdx.js",
   "scripts": {
     "generate": "node generate-parser.js > parser.generated.js",
