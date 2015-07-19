@@ -1,6 +1,3 @@
-spdx.js
-=======
-
 [![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
 [![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX-2.0-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
 [![license](https://img.shields.io/badge/license-MIT-a31f34.svg)](http://www.spdx.org/licenses/MIT)
@@ -17,7 +14,7 @@ Parse SPDX license expressions
 -->
 
 Simple License Expressions
---------------------------
+==========================
 ```js
 spdx.valid('Invalid-Identifier'); // => null
 spdx.valid('GPL-2.0'); // => true
@@ -28,26 +25,30 @@ spdx.valid('DocumentRef-spdx-tool-1.2:LicenseRef-MIT-Style-2'); // => true
 ```
 
 Composite License Expressions
------------------------------
+=============================
 
-### Disjunctive `OR` Operator
+Disjunctive `OR` Operator
+-------------------------
 ```js
 spdx.valid('(LGPL-2.1 OR MIT)'); // => true
 spdx.valid('(LGPL-2.1 OR MIT OR BSD-3-Clause)'); // => true
 ```
 
-### Conjunctive `AND` Operator
+Conjunctive `AND` Operator
+--------------------------
 ```js
 spdx.valid('(LGPL-2.1 AND MIT)'); // => true
 spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
 ```
 
-### Exception `WITH` Operator
+Exception `WITH` Operator
+-------------------------
 ```js
 spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
 ```
 
-### Order of Precedence and Parentheses
+Order of Precedence and Parentheses
+-----------------------------------
 ```js
 var firstAST = {
   left: {license: 'LGPL-2.1'},
@@ -73,7 +74,7 @@ spdx.parse('(MIT AND (LGPL-2.1+ AND BSD-3-Clause))'); // => secondAST
 ```
 
 Strict Whitespace Rules
------------------------
+=======================
 ```js
 spdx.valid('MIT '); // => false
 spdx.valid(' MIT'); // => false
@@ -81,7 +82,7 @@ spdx.valid('MIT  AND  BSD-3-Clause'); // => false
 ```
 
 Identifier Lists
-----------------
+================
 ```js
 Array.isArray(spdx.licenses); // => true
 spdx.licenses.indexOf('ISC') > -1; // => true
@@ -98,12 +99,12 @@ spdx.exceptions.every(function(element) {
 ```
 
 Version Metadata
-----------------
+================
 ```js
 spdx.specificationVersion; // => '2.0'
 spdx.implementationVersion; // => package.version
 ```
 
 The Specification
------------------
+=================
 [The Software Package Data Exchange (SPDX) specification](http://spdx.org) is the work of the [Linux Foundation](http://www.linuxfoundation.org) and its contributors, and is licensed under the terms of [the Creative Commons Attribution License 3.0 Unported (SPDX: "CC-BY-3.0")](http://spdx.org/licenses/CC-BY-3.0). "SPDX" is a United States federally registered trademark of the Linux Foundation.
