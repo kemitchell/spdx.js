@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "jison": "^0.4.15",
-    "jsmd": "^0.3.0"
+    "jsmd-tape": "^0.1.0",
+    "tape": "^4.0.0"
   },
   "homepage": "https://github.com/kemitchell/spdx.js",
   "keywords": [
@@ -28,6 +29,6 @@
     "generate": "node generate-parser.js > parser.generated.js",
     "prepublish": "npm run generate",
     "pretest": "npm run generate",
-    "test": "jsmd README.md"
+    "test": "jsmd-tape README.md | node"
   }
 }
