@@ -3,10 +3,10 @@ spdx.js
 
 [![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
 [![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX-2.0-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
-[![license](https://img.shields.io/badge/license-Apache--2.0-303284.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![license](https://img.shields.io/badge/license-MIT-a31f34.svg)](http://www.spdx.org/licenses/MIT)
 [![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
 
-SPDX License Expression Syntax parser
+Parse SPDX license expressions
 
 <!--js
   // The fenced code blocks below are run as tests with `jsmd`.
@@ -95,42 +95,6 @@ spdx.exceptions.indexOf('GCC-exception-3.1') > -1; // => true
 spdx.exceptions.every(function(element) {
   return typeof element === 'string';
 }); // => true
-```
-
-Comparison
-----------
-```js
-spdx.gt('GPL-3.0', 'GPL-2.0'); // => true
-spdx.lt('MPL-1.0', 'MPL-2.0'); // => true
-
-spdx.gt('LPPL-1.3a', 'LPPL-1.0'); // => true
-spdx.gt('LPPL-1.3c', 'LPPL-1.3a'); // => true
-spdx.gt('MIT', 'ISC'); // => false
-spdx.gt('OSL-1.0', 'OPL-1.0'); // => false
-spdx.gt('AGPL-3.0', 'AGPL-1.0'); // => true
-
-try {
-  spdx.gt('(MIT OR ISC)', 'GPL-3.0');
-} catch (error) {
-  error.message; // => '"(MIT OR ISC)" is not a simple license identifier'
-}
-
-spdx.satisfies('MIT', 'MIT'); // => true
-spdx.satisfies('MIT', '(ISC OR MIT)'); // => true
-spdx.satisfies('Zlib', '(ISC OR (MIT OR Zlib))'); // => true
-spdx.satisfies('GPL-3.0', '(ISC OR MIT)'); // => false
-spdx.satisfies('GPL-2.0', 'GPL-2.0+'); // => true
-spdx.satisfies('GPL-3.0', 'GPL-2.0+'); // => true
-spdx.satisfies('GPL-1.0', 'GPL-2.0+'); // => false
-
-spdx.satisfies('GPL-2.0', 'GPL-2.0+ WITH Bison-exception-2.2'); // => false
-spdx.satisfies(
-  'GPL-3.0 WITH Bison-exception-2.2', 'GPL-2.0+ WITH Bison-exception-2.2'
-); // => true
-
-spdx.satisfies('(MIT OR GPL-2.0)', '(ISC OR MIT)'); // => true
-spdx.satisfies('(MIT AND GPL-2.0)', '(MIT OR GPL-2.0)'); // => true
-spdx.satisfies('(MIT AND GPL-2.0)', '(ISC OR GPL-2.0)'); // => false
 ```
 
 Version Metadata
