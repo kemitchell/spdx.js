@@ -45,7 +45,7 @@ var grammar = {
         return [word, 'return ' + quote(word) + ';'];
       }))
       .concat(require('spdx-license-ids').map(ret('LICENSE')))
-      .concat(require('./exceptions').map(ret('EXCEPTION')))
+      .concat(require('spdx-exceptions').map(ret('EXCEPTION')))
   },
   operators: [
     ['left', 'OR'],

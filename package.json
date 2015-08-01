@@ -5,6 +5,7 @@
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
   "bugs": "https://github.com/kemitchell/spdx.js/issues",
   "dependencies": {
+    "spdx-exceptions": "^1.0.0",
     "spdx-license-ids": "^1.0.0"
   },
   "devDependencies": {
