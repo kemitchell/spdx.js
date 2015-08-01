@@ -25,7 +25,7 @@ exports.valid = function(argument) {
 
 // Require the same license and exception data used by the parser.
 exports.licenses = require('spdx-license-ids');
-exports.exceptions = require('./exceptions.json');
+exports.exceptions = require('spdx-exceptions');
 
 // The License Expression Syntax version
 exports.specificationVersion = '2.0';
