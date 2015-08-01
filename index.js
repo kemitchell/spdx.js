@@ -29,6 +29,3 @@ exports.exceptions = require('./exceptions.json');
 
 // The License Expression Syntax version
 exports.specificationVersion = '2.0';
-
-// This module's semantic version
-exports.implementationVersion = '0.4.1';

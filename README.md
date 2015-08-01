@@ -97,13 +97,10 @@ spdx.exceptions.every(function(element) {
 }); // => true
 ```
 
-Version Metadata
-----------------
-```js
-spdx.specificationVersion; // => '2.0'
-spdx.implementationVersion; // => package.version
-```
-
 The Specification
 -----------------
+```js
+spdx.specificationVersion; // => '2.0'
+```
+
 [The Software Package Data Exchange (SPDX) specification](http://spdx.org) is the work of the [Linux Foundation](http://www.linuxfoundation.org) and its contributors, and is licensed under the terms of [the Creative Commons Attribution License 3.0 Unported (SPDX: "CC-BY-3.0")](http://spdx.org/licenses/CC-BY-3.0). "SPDX" is a United States federally registered trademark of the Linux Foundation.
