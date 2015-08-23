@@ -1,106 +1,90 @@
-spdx.js
-=======
-
-[![npm version](https://img.shields.io/npm/v/spdx.svg)](https://www.npmjs.com/package/spdx)
-[![SPDX License Expression Syntax version](https://img.shields.io/badge/SPDX-2.0-blue.svg)](http://spdx.org/SPDX-specifications/spdx-version-2.0)
-[![license](https://img.shields.io/badge/license-MIT-a31f34.svg)](http://www.spdx.org/licenses/MIT)
-[![build status](https://img.shields.io/travis/kemitchell/spdx.js.svg)](http://travis-ci.org/kemitchell/spdx.js)
-
-Parse SPDX license expressions
-
-<!--js
-  // The fenced code blocks below are run as tests with `jsmd`.
-  // The following `require` call brings the module.
-  // Use `require ('spdx')` in your own code.
-  var spdx = require('./');
-  var package = require('./package.json');
--->
-
-Simple License Expressions
---------------------------
-```js
-spdx.valid('Invalid-Identifier'); // => null
-spdx.valid('GPL-2.0'); // => true
-spdx.valid('GPL-2.0+'); // => true
-spdx.valid('LicenseRef-23'); // => true
-spdx.valid('LicenseRef-MIT-Style-1'); // => true
-spdx.valid('DocumentRef-spdx-tool-1.2:LicenseRef-MIT-Style-2'); // => true
+```javascript
+var spdx = require('spdx')
 ```
 
-Composite License Expressions
------------------------------
+# Simple License Expressions
 
-### Disjunctive `OR` Operator
-```js
-spdx.valid('(LGPL-2.1 OR MIT)'); // => true
-spdx.valid('(LGPL-2.1 OR MIT OR BSD-3-Clause)'); // => true
+```javascript
+var assert = require('assert')
+assert(spdx.valid('Invalid-Identifier') === null)
+assert(spdx.valid('GPL-2.0'))
+assert(spdx.valid('GPL-2.0+'))
+assert(spdx.valid('LicenseRef-23'))
+assert(spdx.valid('LicenseRef-MIT-Style-1'))
+assert(spdx.valid('DocumentRef-spdx-tool-1.2:LicenseRef-MIT-Style-2'))
 ```
 
-### Conjunctive `AND` Operator
-```js
-spdx.valid('(LGPL-2.1 AND MIT)'); // => true
-spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'); // => true
+# Composite License Expressions
+
+## Disjunctive `OR` Operator
+```javascript
+assert(spdx.valid('(LGPL-2.1 OR MIT)'))
+assert(spdx.valid('(LGPL-2.1 OR MIT OR BSD-3-Clause)'))
 ```
 
-### Exception `WITH` Operator
-```js
-spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'); // => true
+## Conjunctive `AND` Operator
+```javascript
+assert(spdx.valid('(LGPL-2.1 AND MIT)'))
+assert(spdx.valid('(LGPL-2.1 AND MIT AND BSD-2-Clause)'))
 ```
 
-### Order of Precedence and Parentheses
-```js
-var firstAST = {
-  left: {license: 'LGPL-2.1'},
-  conjunction: 'or',
-  right: {
-    left: {license: 'BSD-3-Clause'},
+## Exception `WITH` Operator
+
+```javascript
+assert(spdx.valid('(GPL-2.0+ WITH Bison-exception-2.2)'))
+```
+
+## Order of Precedence and Parentheses
+
+```javascript
+assert.deepEqual(
+  spdx.parse('(LGPL-2.1 OR BSD-3-Clause AND MIT)'),
+  { left: { license: 'LGPL-2.1' },
+    conjunction: 'or',
+    right: {
+      left: { license: 'BSD-3-Clause' },
+      conjunction: 'and',
+      right: { license: 'MIT' } } })
+
+assert.deepEqual(
+  spdx.parse('(MIT AND (LGPL-2.1+ AND BSD-3-Clause))'),
+  { left: { license: 'MIT' },
     conjunction: 'and',
-    right: {license: 'MIT'}
-  }
-};
-spdx.parse('(LGPL-2.1 OR BSD-3-Clause AND MIT)'); // => firstAST
-
-var secondAST = {
-  left: {license: 'MIT'},
-  conjunction: 'and',
-  right: {
-    left: {license: 'LGPL-2.1', plus: true},
-    conjunction: 'and',
-    right: {license: 'BSD-3-Clause'}
-  }
-};
-spdx.parse('(MIT AND (LGPL-2.1+ AND BSD-3-Clause))'); // => secondAST
+    right: {
+      left: {
+        license: 'LGPL-2.1',
+        plus: true },
+      conjunction: 'and',
+      right: { license: 'BSD-3-Clause' } } })
 ```
 
-Strict Whitespace Rules
------------------------
-```js
-spdx.valid('MIT '); // => false
-spdx.valid(' MIT'); // => false
-spdx.valid('MIT  AND  BSD-3-Clause'); // => false
+# Strict Whitespace Rules
+
+```javascript
+assert(!spdx.valid('MIT '))
+assert(!spdx.valid(' MIT'))
+assert(!spdx.valid('MIT  AND  BSD-3-Clause'))
 ```
 
-Identifier Lists
-----------------
-```js
-Array.isArray(spdx.licenses); // => true
-spdx.licenses.indexOf('ISC') > -1; // => true
-spdx.licenses.indexOf('Apache-1.7') > -1; // => false
-spdx.licenses.every(function(element) {
-  return typeof element === 'string';
-}); // => true
+# Identifier Lists
 
-Array.isArray(spdx.exceptions); // => true
-spdx.exceptions.indexOf('GCC-exception-3.1') > -1; // => true
-spdx.exceptions.every(function(element) {
-  return typeof element === 'string';
-}); // => true
+```javascript
+assert(Array.isArray(spdx.licenses))
+assert(spdx.licenses.indexOf('ISC') > -1)
+assert(spdx.licenses.indexOf('Apache-1.7') < 0)
+assert(spdx.licenses.every(function(element) {
+  return typeof element === 'string' }))
+
+assert(Array.isArray(spdx.exceptions))
+assert(spdx.exceptions.indexOf('GCC-exception-3.1') > -1)
+assert(spdx.exceptions.every(function(element) {
+  return typeof element === 'string' }))
 ```
 
-The Specification
------------------
-```js
-spdx.specificationVersion; // => '2.0'
+# The Specification
+
+```javascript
+assert.equal(spdx.specificationVersion, '2.0')
 ```
 
 [The Software Package Data Exchange (SPDX) specification](http://spdx.org) is the work of the [Linux Foundation](http://www.linuxfoundation.org) and its contributors, and is licensed under the terms of [the Creative Commons Attribution License 3.0 Unported (SPDX: "CC-BY-3.0")](http://spdx.org/licenses/CC-BY-3.0). "SPDX" is a United States federally registered trademark of the Linux Foundation.
