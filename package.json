@@ -9,9 +9,9 @@
     "spdx-license-ids": "^1.0.0"
   },
   "devDependencies": {
+    "defence-cli": "^1.0.1",
     "jison": "^0.4.15",
-    "jsmd-tape": "^0.1.0",
-    "tape": "^4.0.0"
+    "replace-require-self": "^1.0.0"
   },
   "homepage": "https://github.com/kemitchell/spdx.js",
   "keywords": [
@@ -27,9 +27,8 @@
   "license": "MIT",
   "repository": "kemitchell/spdx.js",
   "scripts": {
-    "generate": "node generate-parser.js > parser.generated.js",
-    "prepublish": "npm run generate",
-    "pretest": "npm run generate",
-    "test": "jsmd-tape README.md | node"
+    "prepublish": "node generate-parser.js > parser.generated.js",
+    "pretest": "npm run prepublish",
+    "test": "defence README.md | replace-require-self | node"
   }
 }
