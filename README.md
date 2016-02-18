@@ -1,3 +1,23 @@
+# Use Other Packages
+
+**Development on spdx.js has moved to separate, smaller packages.**
+
+[spdx-expression-parse][parse] and [spdx-satisfies][satisfies] are
+direct successors to spdx.js.
+
+You may also be interested in [spdx-compare][compare],
+[spdx-correct][correct], and [other packages on the npm public
+registry][search]. [kemitchell][kemitchell] writes a lot of them.
+
+[compare]: https://www.npmjs.com/packages/spdx-compare
+[correct]: https://www.npmjs.com/packages/spdx-correct
+[kemitchell]: https://www.npmjs.com/~kemitchell
+[parse]: https://www.npmjs.com/packages/spdx-expression-parse
+[satisfies]: https://www.npmjs.com/packages/spdx-satisfies
+[search]: https://www.npmjs.com/search?q=spdx
+
+---
+
 ```javascript
 var spdx = require('spdx')
 ```
