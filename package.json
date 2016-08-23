@@ -3,15 +3,10 @@
   "description": "SPDX License Expression Syntax parser",
   "version": "0.5.1",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
-  "bugs": "https://github.com/kemitchell/spdx.js/issues",
   "dependencies": {
-    "spdx-exceptions": "^1.0.0",
-    "spdx-license-ids": "^1.0.0"
-  },
-  "devDependencies": {
-    "defence-cli": "^1.0.1",
-    "jison": "^0.4.15",
-    "replace-require-self": "^1.0.0"
+    "spdx-compare": "^0.1.2",
+    "spdx-expression-parse": "^1.0.2",
+    "spdx-expression-validate": "^1.0.1"
   },
   "homepage": "https://github.com/kemitchell/spdx.js",
   "keywords": [
@@ -25,10 +20,5 @@
     "standards"
   ],
   "license": "MIT",
-  "repository": "kemitchell/spdx.js",
-  "scripts": {
-    "prepublish": "node generate-parser.js > parser.generated.js",
-    "pretest": "npm run prepublish",
-    "test": "defence README.md | replace-require-self | node"
-  }
+  "repository": "kemitchell/spdx.js"
 }
