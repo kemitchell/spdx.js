@@ -9,11 +9,11 @@ You may also be interested in [spdx-compare][compare],
 [spdx-correct][correct], and [other packages on the npm public
 registry][search]. [kemitchell][kemitchell] writes a lot of them.
 
-[compare]: https://www.npmjs.com/packages/spdx-compare
-[correct]: https://www.npmjs.com/packages/spdx-correct
+[compare]: https://www.npmjs.com/package/spdx-compare
+[correct]: https://www.npmjs.com/package/spdx-correct
 [kemitchell]: https://www.npmjs.com/~kemitchell
-[parse]: https://www.npmjs.com/packages/spdx-expression-parse
-[satisfies]: https://www.npmjs.com/packages/spdx-satisfies
+[parse]: https://www.npmjs.com/package/spdx-expression-parse
+[satisfies]: https://www.npmjs.com/package/spdx-satisfies
 [search]: https://www.npmjs.com/search?q=spdx
 
 ---
