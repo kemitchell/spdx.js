@@ -20,12 +20,12 @@ registry][search]. [kemitchell][kemitchell] writes a lot of them.
 
 ```javascript
 var spdx = require('spdx')
+var assert = require('assert')
 ```
 
 # Simple License Expressions
 
 ```javascript
-var assert = require('assert')
 assert(spdx.valid('Invalid-Identifier') === null)
 assert(spdx.valid('GPL-2.0'))
 assert(spdx.valid('GPL-2.0+'))
